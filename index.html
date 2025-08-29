@@ -1,39 +1,40 @@
 <!doctype html>
 <html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link href="./output.css" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-   <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="./output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
+
         body {
             font-family: 'Inter', sans-serif;
         }
-        
+
         .movie-card {
             transition: all 0.3s ease;
             background: linear-gradient(145deg, #1f2937, #374151);
         }
-        
+
         .movie-card:hover {
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-        
+
         .genre-badge {
             background: linear-gradient(45deg, #3b82f6, #8b5cf6);
             animation: pulse 2s infinite;
         }
-        
+
         .hero-bg {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
             position: relative;
             overflow: hidden;
         }
-        
+
         .hero-bg::before {
             content: '';
             position: absolute;
@@ -44,16 +45,23 @@
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.03"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" opacity="0.08"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
             pointer-events: none;
         }
-        
+
         .floating-animation {
             animation: float 6s ease-in-out infinite;
         }
-        
+
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
-        
+
         .spotlight {
             background: radial-gradient(circle at center, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
             position: absolute;
@@ -63,77 +71,118 @@
             pointer-events: none;
             animation: spotlight 8s linear infinite;
         }
-        
+
         @keyframes spotlight {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
-        
+
         .film-strip {
-            background: repeating-linear-gradient(
-                90deg,
-                #374151 0px,
-                #374151 20px,
-                #1f2937 20px,
-                #1f2937 40px
-            );
+            background: repeating-linear-gradient(90deg,
+                    #374151 0px,
+                    #374151 20px,
+                    #1f2937 20px,
+                    #1f2937 40px);
             height: 8px;
         }
-        
+
         .glow-text {
             text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
-        
+
         .rating-stars {
             background: linear-gradient(45deg, #fbbf24, #f59e0b);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
+     glow-text {
+      text-shadow: 0 0 10px rgba(59, 130, 246, 0.7), 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+    .film-strip {
+      height: 30px;
+      background: repeating-linear-gradient(
+        90deg,
+        #333,
+        #333 10px,
+        #000 10px,
+        #000 20px
+      );
+      border: 2px solid #444;
+      border-radius: 5px;
+    }
     </style>
 </head>
+
 <body class="bg-gray-900 text-white">
+    
     <!-- Header -->
     <header class="bg-black/50 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                    <div class="text-3xl font-bold glow-text">🎬 Cinema Explorer</div>
-                    <div class="film-strip w-20 hidden md:block"></div>
-                </div>
-                <nav class="flex space-x-6">
-                    <button class="hover:text-blue-400 transition-colors" onclick="showSection('home')">Home</button>
-                    <button class="hover:text-blue-400 transition-colors" onclick="showSection('genres')">Genres</button>
-                    <button class="hover:text-blue-400 transition-colors" onclick="showSection('trending')">Trending</button>
-                    <button class="hover:text-blue-400 transition-colors" onclick="showSection('awards')">Awards</button>
-                </nav>
-            </div>
+  <div class="container mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+      
+      <!-- Logo + Film strip -->
+      <div class="flex items-center space-x-4">
+        <div class="text-3xl font-bold glow-text">🎬 Cinema Explorer</div>
+        <div class="film-strip w-20 hidden md:block"></div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex space-x-6 items-center">
+        <a href="index.html" class="hover:text-blue-400 transition-colors">Home</a>
+        <a href="#genres" class="hover:text-blue-400 transition-colors">Genres</a>
+        <a href="./src/pages/movieCard.html" class="hover:text-blue-400 transition-colors">Trending</a>
+
+        <!-- Bigger Search -->
+        <div class="relative">
+          <input type="text" placeholder="Search movies..."
+            class="glass bg-white/10 border border-white/15 text-white placeholder-white px-5 py-3 rounded-full 
+                   w- focus:w-80 text-lg transition-all duration-500 ease-in-out 
+                   focus:outline-none focus:ring-2 focus:ring-white/30" />
+          <svg class="absolute right-4 top-3.5 w-6 h-6 text-white pointer-events-none" fill="none"
+            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1010.5 3a7.5 7.5 0 006.15 13.65z" />
+          </svg>
         </div>
-    </header>
+      </nav>
+    </div>
+  </div>
+</header>
 
     <!-- Hero Section -->
     <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
         <div class="spotlight top-1/4 left-1/4"></div>
         <div class="spotlight top-3/4 right-1/4" style="animation-delay: -4s;"></div>
-        
+
         <div class="text-center z-10 max-w-4xl mx-auto px-6">
             <h1 class="text-7xl font-bold mb-6 glow-text floating-animation">
                 Welcome to Cinema
             </h1>
             <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                Discover the magic of movies - from Hollywood blockbusters to indie masterpieces, 
+                Discover the magic of movies - from Hollywood blockbusters to indie masterpieces,
                 explore the world of cinema like never before.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <button class="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 rounded-full font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-blue-500/25" onclick="showSection('genres')">
+                <button
+                    class="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 rounded-full font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-blue-500/25"
+                    onclick="showSection('genres')">
                     Explore Genres
                 </button>
-                <button class="border-2 border-white/30 px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-all duration-300" onclick="showSection('trending')">
+                <button
+                    class="border-2 border-white/30 px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-all duration-300"
+                    onclick="showSection('trending')">
                     What's Trending
                 </button>
             </div>
         </div>
-        
+
         <!-- Floating Elements -->
         <div class="absolute top-20 left-10 text-4xl floating-animation" style="animation-delay: -1s;">🎭</div>
         <div class="absolute bottom-20 right-10 text-4xl floating-animation" style="animation-delay: -3s;">🍿</div>
@@ -145,42 +194,50 @@
         <div class="container mx-auto px-6">
             <h2 class="text-5xl font-bold text-center mb-16 glow-text">Movie Genres</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <div class="genre-card bg-gradient-to-br from-red-600 to-red-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer" onclick="showGenreMovies('Action')">
+                <div class="genre-card bg-gradient-to-br from-red-600 to-red-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer"
+                    onclick="showGenreMovies('Action')">
                     <div class="text-4xl mb-4">💥</div>
                     <h3 class="text-2xl font-bold mb-2">Action</h3>
                     <p class="text-red-100">High-octane thrills and explosive adventures</p>
                 </div>
-                <div class="genre-card bg-gradient-to-br from-yellow-600 to-yellow-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer" onclick="showGenreMovies('Comedy')">
+                <div class="genre-card bg-gradient-to-br from-yellow-600 to-yellow-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer"
+                    onclick="showGenreMovies('Comedy')">
                     <div class="text-4xl mb-4">😂</div>
                     <h3 class="text-2xl font-bold mb-2">Comedy</h3>
                     <p class="text-yellow-100">Laughter and feel-good moments</p>
                 </div>
-                <div class="genre-card bg-gradient-to-br from-blue-600 to-blue-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer" onclick="showGenreMovies('Drama')">
+                <div class="genre-card bg-gradient-to-br from-blue-600 to-blue-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer"
+                    onclick="showGenreMovies('Drama')">
                     <div class="text-4xl mb-4">🎭</div>
                     <h3 class="text-2xl font-bold mb-2">Drama</h3>
                     <p class="text-blue-100">Emotional storytelling and character depth</p>
                 </div>
-                <div class="genre-card bg-gradient-to-br from-purple-600 to-purple-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer" onclick="showGenreMovies('Sci-Fi')">
+                <div class="genre-card bg-gradient-to-br from-purple-600 to-purple-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer"
+                    onclick="showGenreMovies('Sci-Fi')">
                     <div class="text-4xl mb-4">🚀</div>
                     <h3 class="text-2xl font-bold mb-2">Sci-Fi</h3>
                     <p class="text-purple-100">Future worlds and technological wonders</p>
                 </div>
-                <div class="genre-card bg-gradient-to-br from-green-600 to-green-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer" onclick="showGenreMovies('Horror')">
+                <div class="genre-card bg-gradient-to-br from-green-600 to-green-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer"
+                    onclick="showGenreMovies('Horror')">
                     <div class="text-4xl mb-4">👻</div>
                     <h3 class="text-2xl font-bold mb-2">Horror</h3>
                     <p class="text-green-100">Spine-chilling scares and supernatural tales</p>
                 </div>
-                <div class="genre-card bg-gradient-to-br from-pink-600 to-pink-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer" onclick="showGenreMovies('Romance')">
+                <div class="genre-card bg-gradient-to-br from-pink-600 to-pink-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer"
+                    onclick="showGenreMovies('Romance')">
                     <div class="text-4xl mb-4">💕</div>
                     <h3 class="text-2xl font-bold mb-2">Romance</h3>
                     <p class="text-pink-100">Love stories that touch the heart</p>
                 </div>
-                <div class="genre-card bg-gradient-to-br from-indigo-600 to-indigo-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer" onclick="showGenreMovies('Animation')">
+                <div class="genre-card bg-gradient-to-br from-indigo-600 to-indigo-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer"
+                    onclick="showGenreMovies('Animation')">
                     <div class="text-4xl mb-4">🎨</div>
                     <h3 class="text-2xl font-bold mb-2">Animation</h3>
                     <p class="text-indigo-100">Artistic storytelling through animation</p>
                 </div>
-                <div class="genre-card bg-gradient-to-br from-gray-600 to-gray-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer" onclick="showGenreMovies('Documentary')">
+                <div class="genre-card bg-gradient-to-br from-gray-600 to-gray-800 p-6 rounded-xl hover:scale-105 transition-transform cursor-pointer"
+                    onclick="showGenreMovies('Documentary')">
                     <div class="text-4xl mb-4">📽️</div>
                     <h3 class="text-2xl font-bold mb-2">Documentary</h3>
                     <p class="text-gray-100">Real stories and factual narratives</p>
@@ -188,89 +245,108 @@
             </div>
         </div>
     </section>
-    
+
     <!-- main -->
-  <section class="px-6 py-12 max-w-7xl mx-auto bg-gray-900">
-    <h2 class="text-2xl font-bold mb-6 border-l-4 border-green-500 pl-3">Trending Anime</h2>
+    <section class="px-6 py-12 max-w-7xl mx-auto bg-gray-900">
+        <h2 class="text-2xl font-bold mb-6 border-l-4 border-green-500 pl-3">Trending Anime</h2>
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
 
-      <!-- Anime Card -->
-      <div class="relative group bg-[#1c1c1c] rounded overflow-hidden shadow hover:shadow-lg transition">
-        <img src="https://cdn.myanimelist.net/images/anime/10/47347.jpg" alt="Attack on Titan" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300" />
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-          <button class="bg-green-600 px-4 py-2 rounded text-sm hover:bg-green-700 "><a href="./src/pages/movieCard.html"> Watch Now</a></button>
-        </div>
-        <div class="p-2"><a href="https://www.myanimelist.net/anime/16498/Attack_on_Titan" class="text-white text-xs underline ml-2"></a>
-          <h3 class="text-sm font-semibold truncate">Attack on Titan</h3>
-          <p class="text-xs text-gray-400">24 eps • Action, Drama</p>
-        </div>
-        <span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">Ep 24</span>
-      </div>
+            <!-- Anime Card -->
+            <div class="relative group bg-[#1c1c1c] rounded overflow-hidden shadow hover:shadow-lg transition">
+                <img src="https://cdn.myanimelist.net/images/anime/10/47347.jpg" alt="Attack on Titan"
+                    class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                    <button class="bg-green-600 px-4 py-2 rounded text-sm hover:bg-green-700 "><a
+                            href="./src/pages/movieCard.html"> Watch Now</a></button>
+                </div>
+                <div class="p-2"><a href="https://www.myanimelist.net/anime/16498/Attack_on_Titan"
+                        class="text-white text-xs underline ml-2"></a>
+                    <h3 class="text-sm font-semibold truncate">Attack on Titan</h3>
+                    <p class="text-xs text-gray-400">24 eps • Action, Drama</p>
+                </div>
+                <span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">Ep 24</span>
+            </div>
 
-      <!-- Repeat with different data -->
-      <div class="relative group bg-[#1c1c1c] rounded overflow-hidden shadow hover:shadow-lg transition">
-        <img src="https://cdn.myanimelist.net/images/anime/5/87048.jpg" alt="My Hero Academia" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300" />
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-          <button class="bg-green-600 px-4 py-2 rounded text-sm hover:bg-green-700"><a href="./pages/movieCard.html">movie</a>Watch Now</button>
-        </div>
-        <div class="p-2">
-          <h3 class="text-sm font-semibold truncate">My Hero Academia</h3>
-          <p class="text-xs text-gray-400">13 eps • Super Power</p>
-        </div>
-        <span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">Ep 13</span>
-      </div>
+            <!-- Repeat with different data -->
+            <div class="relative group bg-[#1c1c1c] rounded overflow-hidden shadow hover:shadow-lg transition">
+                <img src="https://cdn.myanimelist.net/images/anime/5/87048.jpg" alt="My Hero Academia"
+                    class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                    <button class="bg-green-600 px-4 py-2 rounded text-sm hover:bg-green-700"><a
+                            href="./src/pages/movieCard.html">Watch Now</a></button>
+                </div>
+                <div class="p-2">
+                    <h3 class="text-sm font-semibold truncate">My Hero Academia</h3>
+                    <p class="text-xs text-gray-400">13 eps • Super Power</p>
+                </div>
+                <span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">Ep 13</span>
+            </div>
 
-      <div class="relative group bg-[#1c1c1c] rounded overflow-hidden shadow hover:shadow-lg transition">
-        <img src="https://cdn.myanimelist.net/images/anime/4/19644.jpg" alt="Death Note" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300" />
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-          <button class="bg-green-600 px-4 py-2 rounded text-sm hover:bg-green-700">Watch Now</button>
-        </div>
-        <div class="p-2">
-          <h3 class="text-sm font-semibold truncate">Death Note</h3>
-          <p class="text-xs text-gray-400">37 eps • Thriller, Supernatural</p>
-        </div>
-        <span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">Ep 37</span>
-      </div>
+            <div class="relative group bg-[#1c1c1c] rounded overflow-hidden shadow hover:shadow-lg transition">
+                <img src="https://cdn.myanimelist.net/images/anime/4/19644.jpg" alt="Death Note"
+                    class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                    <button class="bg-green-600 px-4 py-2 rounded text-sm hover:bg-green-700"><a
+                            href="./src/pages/movieCard.html">Watch Now</a></button>
+                </div>
+                <div class="p-2">
+                    <h3 class="text-sm font-semibold truncate">Death Note</h3>
+                    <p class="text-xs text-gray-400">37 eps • Thriller, Supernatural</p>
+                </div>
+                <span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">Ep 37</span>
+            </div>
 
-      <div class="relative group bg-[#1c1c1c] rounded overflow-hidden shadow hover:shadow-lg transition">
-        <img src="https://cdn.myanimelist.net/images/anime/11/39717.jpg" alt="Fullmetal Alchemist: Brotherhood" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300" />
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-          <button class="bg-green-600 px-4 py-2 rounded text-sm hover:bg-green-700">Watch Now</button>
-        </div>
-        <div class="p-2">
-          <h3 class="text-sm font-semibold truncate">FMAB</h3>
-          <p class="text-xs text-gray-400">64 eps • Adventure, Fantasy</p>
-        </div>
-        <span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">Ep 64</span>
-      </div>
+            <div class="relative group bg-[#1c1c1c] rounded overflow-hidden shadow hover:shadow-lg transition">
+                <img src="https://cdn.myanimelist.net/images/anime/11/39717.jpg" alt="Fullmetal Alchemist: Brotherhood"
+                    class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div
+                    class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                    <button class="bg-green-600 px-4 py-2 rounded text-sm hover:bg-green-700"><a
+                            href="./src/pages/movieCard.html">Watch Now</a></button>
+                </div>
+                <div class="p-2">
+                    <h3 class="text-sm font-semibold truncate">FMAB</h3>
+                    <p class="text-xs text-gray-400">64 eps • Adventure, Fantasy</p>
+                </div>
+                <span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">Ep 64</span>
+            </div>
 
-      <div class="relative group bg-[#1c1c1c] rounded overflow-hidden shadow hover:shadow-lg transition">
-        <img src="https://cdn.myanimelist.net/images/anime/9/9453.jpg" alt="Naruto" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300" />
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-          <button class="bg-green-600 px-4 py-2 rounded text-sm hover:bg-green-700">Watch Now</button>
-        </div>
-        <div class="p-2">
-          <h3 class="text-sm font-semibold truncate">Naruto</h3>
-          <p class="text-xs text-gray-400">220 eps • Ninja, Shounen</p>
-        </div>
-        <span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">Ep 220</span>
-      </div>
+            <div class="relative group bg-[#1c1c1c] rounded overflow-hidden shadow hover:shadow-lg transition">
+                <img src="https://cdn.myanimelist.net/images/anime/9/9453.jpg" alt="Naruto"
+                    class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                    <button class="bg-green-600 px-4 py-2 rounded text-sm hover:bg-green-700"><a
+                            href="./src/pages/movieCard.html">Watch Now</a></button>
+                </div>
+                <div class="p-2">
+                    <h3 class="text-sm font-semibold truncate">Naruto</h3>
+                    <p class="text-xs text-gray-400">220 eps • Ninja, Shounen</p>
+                </div>
+                <span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">Ep 220</span>
+            </div>
 
-      <div class="relative group bg-[#1c1c1c] rounded overflow-hidden shadow hover:shadow-lg transition">
-        <img src="https://cdn.myanimelist.net/images/anime/3/40451.jpg" alt="Bleach" class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300" />
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-          <button class="bg-green-600 px-4 py-2 rounded text-sm hover:bg-green-700">Watch Now</button>
-        </div>
-        <div class="p-2">
-          <h3 class="text-sm font-semibold truncate">Bleach</h3>
-          <p class="text-xs text-gray-400">366 eps • Action, Soul Reaper</p>
-        </div>
-        <span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">Ep 366</span>
-      </div>
+            <div class="relative group bg-[#3e661b] rounded overflow-hidden shadow hover:shadow-lg transition">
+                <img src="https://cdn.myanimelist.net/images/anime/3/40451.jpg" alt="Bleach"
+                    class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                    <button class="bg-green-600 px-4 py-2 rounded text-sm hover:bg-green-700"><a
+                            href="./src/pages/movieCard.html">Watch Now</a></button>
+                </div>
+                <div class="p-2">
+                    <h3 class="text-sm font-semibold truncate">Bleach</h3>
+                    <p class="text-xs text-gray-400">366 eps • Action, Soul Reaper</p>
+                </div>
+                <span class="absolute top-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded">Ep 366</span>
+            </div>
 
-    </div>
-  </section>
+        </div>
+    </section>
 
 
 
@@ -280,48 +356,54 @@
             <h2 class="text-5xl font-bold text-center mb-16 glow-text">Trending Now</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="movie-card rounded-xl p-6 hover:shadow-2xl transition-all duration-300">
-                        <img class="w-full h-full object-fit" src="https://imgs.search.brave.com/RHnYH4URl-Ys_5UXBODvaQNycEodBtvWnTGPxpUzV9Y/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLmV0/c3lzdGF0aWMuY29t/LzQzNTQ2NjU1L3Iv/aWwvYTYyMmRhLzUx/MDE1MTI0MDQvaWxf/NjAweDYwMC41MTAx/NTEyNDA0X3Fpencu/anBn" alt="Spiterman">
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2">Superhero Epic</h3>
-                    <div class="flex items-center mb-2">
-                        <span class="rating-stars text-lg">★★★★★</span>
-                        <span class="ml-2 text-gray-400">9.2/10</span>
-                    </div>
-                    <p class="text-gray-300 mb-4">A groundbreaking superhero adventure that redefines the genre.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="genre-badge text-xs px-3 py-1 rounded-full">Action</span>
-                        <span class="genre-badge text-xs px-3 py-1 rounded-full">Adventure</span>
-                    </div>
+                    <img class="w-full h-full object-fit"
+                        src="https://imgs.search.brave.com/RHnYH4URl-Ys_5UXBODvaQNycEodBtvWnTGPxpUzV9Y/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLmV0/c3lzdGF0aWMuY29t/LzQzNTQ2NjU1L3Iv/aWwvYTYyMmRhLzUx/MDE1MTI0MDQvaWxf/NjAweDYwMC41MTAx/NTEyNDA0X3Fpencu/anBn"
+                        alt="Spiterman">
                 </div>
-                
-                <div class="movie-card rounded-xl p-6 hover:shadow-2xl transition-all duration-300">
-                    <div class="bg-gradient-to-br from-green-500 to-teal-600 h-64 rounded-lg mb-4 flex items-center justify-center text-6xl">🌌</div>
-                    <h3 class="text-2xl font-bold mb-2">Cosmic Journey</h3>
-                    <div class="flex items-center mb-2">
-                        <span class="rating-stars text-lg">★★★★☆</span>
-                        <span class="ml-2 text-gray-400">8.7/10</span>
-                    </div>
-                    <p class="text-gray-300 mb-4">An interstellar adventure that explores the vastness of space.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="genre-badge text-xs px-3 py-1 rounded-full">Sci-Fi</span>
-                        <span class="genre-badge text-xs px-3 py-1 rounded-full">Drama</span>
-                    </div>
+                <h3 class="text-2xl font-bold mb-2">Superhero Epic</h3>
+                <div class="flex items-center mb-2">
+                    <span class="rating-stars text-lg">★★★★★</span>
+                    <span class="ml-2 text-gray-400">9.2/10</span>
                 </div>
-                
-                <div class="movie-card rounded-xl p-6 hover:shadow-2xl transition-all duration-300">
-                    <div class="bg-gradient-to-br from-red-500 to-orange-600 h-64 rounded-lg mb-4 flex items-center justify-center text-6xl">🎭</div>
-                    <h3 class="text-2xl font-bold mb-2">The Artist's Tale</h3>
-                    <div class="flex items-center mb-2">
-                        <span class="rating-stars text-lg">★★★★★</span>
-                        <span class="ml-2 text-gray-400">9.5/10</span>
-                    </div>
-                    <p class="text-gray-300 mb-4">A deeply moving drama about passion, sacrifice, and art.</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="genre-badge text-xs px-3 py-1 rounded-full">Drama</span>
-                        <span class="genre-badge text-xs px-3 py-1 rounded-full">Biography</span>
-                    </div>
+                <p class="text-gray-300 mb-4">A groundbreaking superhero adventure that redefines the genre.</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="genre-badge text-xs px-3 py-1 rounded-full">Action</span>
+                    <span class="genre-badge text-xs px-3 py-1 rounded-full">Adventure</span>
                 </div>
             </div>
+
+            <div class="movie-card rounded-xl p-6 hover:shadow-2xl transition-all duration-300">
+                <div
+                    class="bg-gradient-to-br from-green-500 to-teal-600 h-64 rounded-lg mb-4 flex items-center justify-center text-6xl">
+                    🌌</div>
+                <h3 class="text-2xl font-bold mb-2">Cosmic Journey</h3>
+                <div class="flex items-center mb-2">
+                    <span class="rating-stars text-lg">★★★★☆</span>
+                    <span class="ml-2 text-gray-400">8.7/10</span>
+                </div>
+                <p class="text-gray-300 mb-4">An interstellar adventure that explores the vastness of space.</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="genre-badge text-xs px-3 py-1 rounded-full">Sci-Fi</span>
+                    <span class="genre-badge text-xs px-3 py-1 rounded-full">Drama</span>
+                </div>
+            </div>
+
+            <div class="movie-card rounded-xl p-6 hover:shadow-2xl transition-all duration-300">
+                <div
+                    class="bg-gradient-to-br from-red-500 to-orange-600 h-64 rounded-lg mb-4 flex items-center justify-center text-6xl">
+                    🎭</div>
+                <h3 class="text-2xl font-bold mb-2">The Artist's Tale</h3>
+                <div class="flex items-center mb-2">
+                    <span class="rating-stars text-lg">★★★★★</span>
+                    <span class="ml-2 text-gray-400">9.5/10</span>
+                </div>
+                <p class="text-gray-300 mb-4">A deeply moving drama about passion, sacrifice, and art.</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="genre-badge text-xs px-3 py-1 rounded-full">Drama</span>
+                    <span class="genre-badge text-xs px-3 py-1 rounded-full">Biography</span>
+                </div>
+            </div>
+        </div>
         </div>
     </section>
 
@@ -348,7 +430,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="text-center">
                     <div class="text-8xl mb-6">🎭</div>
                     <h3 class="text-3xl font-bold mb-4 text-yellow-400">International Recognition</h3>
@@ -396,6 +478,8 @@
             </div>
         </div>
     </footer>
-  <script src="./script/main.js"></script>
+    <script src="./script/main.js"></script>
+    <script src="./script/search.js"></script>
 </body>
+
 </html>
