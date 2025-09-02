@@ -102,59 +102,62 @@
             background-clip: text;
         }
 
-     glow-text {
-      text-shadow: 0 0 10px rgba(59, 130, 246, 0.7), 0 0 20px rgba(59, 130, 246, 0.5);
-    }
-    .film-strip {
-      height: 30px;
-      background: repeating-linear-gradient(
-        90deg,
-        #333,
-        #333 10px,
-        #000 10px,
-        #000 20px
-      );
-      border: 2px solid #444;
-      border-radius: 5px;
-    }
+        glow-text {
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.7), 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .film-strip {
+            height: 30px;
+            background: repeating-linear-gradient(90deg,
+                    #333,
+                    #333 10px,
+                    #000 10px,
+                    #000 20px);
+            border: 2px solid #444;
+            border-radius: 5px;
+        }
     </style>
 </head>
 
 <body class="bg-gray-900 text-white">
-    
+
     <!-- Header -->
     <header class="bg-black/50 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
-  <div class="container mx-auto px-6 py-4">
-    <div class="flex items-center justify-between">
-      
-      <!-- Logo + Film strip -->
-      <div class="flex items-center space-x-4">
-        <div class="text-3xl font-bold glow-text">🎬 Cinema Explorer</div>
-        <div class="film-strip w-20 hidden md:block"></div>
-      </div>
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="text-3xl font-bold glow-text">🎬 Cinema Explorer</div>
 
-      <!-- Navigation -->
-      <nav class="flex space-x-6 items-center">
-        <a href="index.html" class="hover:text-blue-400 transition-colors">Home</a>
-        <a href="#genres" class="hover:text-blue-400 transition-colors">Genres</a>
-        <a href="./src/pages/movieCard.html" class="hover:text-blue-400 transition-colors">Trending</a>
+                </div>
+                <nav class="flex space-x-6 items-center">
+                    <a href="index.html" class="hover:text-blue-400 transition-colors">Home</a>
+                    <a href="#genres" class="hover:text-blue-400 transition-colors">Genres</a>
+                    <a href="./src/pages/movieCard.html" class="hover:text-blue-400 transition-colors">Trending</a>
+                    <div class="relative flex items-center w-full max-w-sm mx-auto">
+                        <input id="search-input" type="text" placeholder="Search..."
+                            class="glass bg-white/10 border border-white/20 text-white placeholder-white px-5 py-3 rounded-full w-full md:w-56 focus:w-full md:focus:w-80 text-lg transition-all duration-500 ease-in-out focus:outline-none focus:ring-2 focus:ring-white/30" />
 
-        <!-- Bigger Search -->
-        <div class="relative">
-          <input type="text" placeholder="Search movies..."
-            class="glass bg-white/10 border border-white/15 text-white placeholder-white px-5 py-3 rounded-full 
-                   w- focus:w-80 text-lg transition-all duration-500 ease-in-out 
-                   focus:outline-none focus:ring-2 focus:ring-white/30" />
-          <svg class="absolute right-4 top-3.5 w-6 h-6 text-white pointer-events-none" fill="none"
-            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1010.5 3a7.5 7.5 0 006.15 13.65z" />
-          </svg>
+                        <svg class="absolute right-3.5 md:right-16 w-6 h-6 text-white pointer-events-none" fill="none"
+                            stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1010.5 3a7.5 7.5 0 006.15 13.65z" />
+                        </svg>
+                        <ul>
+                            <div id="suggestions"
+                                class="absolute top-full left-0 right-0 bg-gray-800 border border-gray-700 rounded-b-lg mt-1 max-h-60 overflow-y-auto hidden">
+                                <ul>
+                                    <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer"></li>
+                                    <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer"></li>
+                                    <li class="px-4 py-2 hover:bg-gray-700 cursor-pointer"></li>
+                                </ul>
+                            </div>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
         </div>
-      </nav>
-    </div>
-  </div>
-</header>
+    </header>
+
 
     <!-- Hero Section -->
     <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
@@ -348,8 +351,6 @@
         </div>
     </section>
 
-
-
     <!-- Trending Movies Section -->
     <section id="trending" class="py-20 bg-gray-900 hidden">
         <div class="container mx-auto px-6">
@@ -469,17 +470,92 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-black py-12">
-        <div class="container mx-auto px-6 text-center">
-            <div class="film-strip w-full mb-6"></div>
-            <p class="text-gray-400">© 2025 Cinema Explorer. Celebrating the magic of movies worldwide.</p>
-            <div class="mt-4 text-2xl space-x-4">
-                🎬 🍿 🎭 🎪 📽️
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="container mx-auto px-4 md:px-8 lg:px-12">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16">
+
+                <div class="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
+                    <a href="#" class="flex items-center space-x-2">
+
+                        <span class="text-white text-3xl font-bold tracking-tight">🎬 Cinema Explorer</span>
+                    </a>
+                    <p class="text-sm">Your cinematic journey starts here.</p>
+
+                    <div class="mt-4">
+                        <p class="text-sm font-semibold mb-2">Subscribe to our newsletter</p>
+                        <form class="flex">
+                            <input type="email" placeholder="Enter your email"
+                                class="py-2 px-4 rounded-l-lg focus:outline-none bg-gray-800 text-white placeholder-gray-500 w-full">
+                            <button type="submit"
+                                class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-r-lg transition-colors duration-300">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-red-500 transition-colors duration-300">Movies</a></li>
+                        <li><a href="#" class="hover:text-red-500 transition-colors duration-300">TV Shows</a></li>
+                        <li><a href="#" class="hover:text-red-500 transition-colors duration-300">Upcoming</a></li>
+                        <li><a href="#" class="hover:text-red-500 transition-colors duration-300">News & Reviews</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">About Us</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-red-500 transition-colors duration-300">Our Mission</a></li>
+                        <li><a href="#" class="hover:text-red-500 transition-colors duration-300">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-red-500 transition-colors duration-300">Careers</a></li>
+                        <li><a href="#" class="hover:text-red-500 transition-colors duration-300">Help Center</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white text-lg font-semibold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" aria-label="Facebook" class="hover:text-red-500 transition-colors duration-300">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 .5-2.5h2.5V.359c-.568-.073-1.418-.173-2.618-.173-2.923 0-4.045 1.708-4.045 4.298V9.5H.5v4H5V24h5V13.5z" />
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter" class="hover:text-red-500 transition-colors duration-300">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.87-2.73 1.07-1.77-1.89-4.66-1.89-6.43 0-1.89 2.01-1.89 5.25 0 7.25-4.52-.23-8.54-2.39-11.23-5.7-1.24 2.11-.22 4.67 1.89 5.95-1.56-.05-3.01-.48-4.29-1.18-.01.01-.01.01-.01.02.01 4.79 3.42 8.76 7.94 9.61-1.11.3-2.29.46-3.48.46-.85 0-1.68-.09-2.49-.24.01.01.01.01.01.02 1.39 4.39 5.16 7.57 9.77 7.66-3.8 2.98-8.59 4.66-13.82 4.66-2.52 0-4.96-.28-7.33-.82C2.12 21.6 4.7 22 7.42 22.01c7.95 0 12.29-6.58 12.29-12.29 0-.19-.01-.39-.02-.58 1.13-.82 2.1-1.84 2.88-3.02z" />
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="hover:text-red-500 transition-colors duration-300">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.851.07 1.25.057 1.88.243 2.502.57 1.042.548 1.897 1.397 2.445 2.445.327.622.513 1.252.57 2.502.058 1.267.07 1.647.07 4.851s-.012 3.584-.07 4.851c-.057 1.25-.243 1.88-.57 2.502-1.042 2.083-3.125 3.126-5.208 3.126-1.637 0-3.125-.494-4.502-.992-1.377-.5-2.583-.992-3.833-.992-1.25 0-2.458.492-3.833.992-1.377.498-2.865.992-4.502.992-2.083 0-3.125-1.043-5.208-3.126-.327-.622-.513-1.252-.57-2.502-.058-1.267-.07-1.647-.07-4.851s.012-3.584.07-4.851c.057-1.25.243-1.88.57-2.502 1.042-2.083 3.125-3.126 5.208-3.126 1.637 0 3.125.494 4.502.992 1.377.5 2.583.992 3.833.992 1.25 0 2.458-.492 3.833-.992 1.377-.498 2.865-.992 4.502-.992zm0-2.163c-3.204 0-3.584.012-4.851.07C.588 1.944 0 2.532 0 4.163v15.674c0 1.63 2.532 2.218 4.163 2.218h15.674c1.63 0 2.218-.588 2.218-2.218V4.163c0-1.63-.588-2.218-2.218-2.218h-15.674zM12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 7a2.5 2.5 0 110-5 2.5 2.5 0 010 5zm6.5-11.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-gray-700 my-8">
+
+            <div
+                class="flex flex-col md:flex-row justify-between items-center text-center md:text-left text-sm space-y-4 md:space-y-0">
+                <p>&copy; 2024 MovieFlix. All rights reserved.</p>
+                <div class="space-x-4">
+                    <a href="#" class="hover:text-red-500 transition-colors duration-300">Terms of Service</a>
+                    <a href="#" class="hover:text-red-500 transition-colors duration-300">Privacy Policy</a>
+                </div>
             </div>
         </div>
     </footer>
     <script src="./script/main.js"></script>
     <script src="./script/search.js"></script>
+    <script src="./script/apiSearch.js"></script>
 </body>
 
 </html>
